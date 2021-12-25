@@ -1,7 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function App() {
+import Row from './components/Row.jsx';
+
+const App = () => {
   const [tree, setTree] = useState([]);
   const [numberOfRows, setNumberOfRows] = useState(10);
 
@@ -24,13 +26,22 @@ function App() {
     return returnable;
   };
 
-  console.log(generateTree());
+  useEffect(() => {
+    setTree(generateTree());
+  }, [numberOfRows]);
+
+  const rows = tree.map((row, index) =>
+    <Row values={row} key={index} />
+  );
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Pascal's Christmas Tree</h1>
       </header>
+      <article>
+        { rows }
+      </article>
     </div>
   );
 }
