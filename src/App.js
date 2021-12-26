@@ -43,7 +43,8 @@ const App = () => {
       </header>
       <article>
         <form>
-          <input {...numberOfRows} min="1" />
+          <label htmlFor="rows">Number of Rows:</label>
+          <input id="rows" {...numberOfRows} min="1" />
         </form>
         { rows }
       </article>
