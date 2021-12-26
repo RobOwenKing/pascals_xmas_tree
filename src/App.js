@@ -3,14 +3,18 @@ import { useEffect, useState } from 'react';
 
 import Row from './components/Row.jsx';
 
-import { rowTestOptions } from './helpers/booleanTestOptions.js';
+import { rowTestOptions, highlightOptions } from './helpers/booleanTestOptions.js';
 
 import useInput from './hooks/useInput.js';
 
 const App = () => {
   const [tree, setTree] = useState([]);
   const numberOfRows = useInput('number', 10);
+
   const rowTest = useInput('', rowTestOptions[0].value);
+
+  const highlightOption = useInput('', highlightOptions[0].value);
+  const highlightTest = useState(highlightOptions[0].test);
 
   const calculateNewRow = (previousRow) => {
     return previousRow.slice(0, previousRow.length - 1)
