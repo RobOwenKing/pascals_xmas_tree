@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react';
 
 import Row from './components/Row.jsx';
 
+import { rowTestOptions } from './helpers/booleanTestOptions.js';
+
 import useInput from './hooks/useInput.js';
 
 const App = () => {
   const [tree, setTree] = useState([]);
   const numberOfRows = useInput('number', 10);
+  const rowTest = useInput('', rowTestOptions[0].value);
 
   const calculateNewRow = (previousRow) => {
     return previousRow.slice(0, previousRow.length - 1)
@@ -45,6 +48,13 @@ const App = () => {
         <form>
           <label htmlFor="rows">Number of Rows:</label>
           <input id="rows" {...numberOfRows} min="1" />
+
+          <label htmlFor="row-test">Prune rows when:</label>
+          <select id="row-test" {...rowTest}>
+            { rowTestOptions.map((opt, index) => {
+              return <option key={index} value={opt.value}>{opt.label}</option>
+            }) }
+          </select>
         </form>
         { rows }
       </article>

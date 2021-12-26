@@ -29,7 +29,10 @@
   color: green;
 }
 
+label {
+  margin-right: 8px;
+}
+
 input[type=number] {
   width: 36px;
-  margin-left: 8px;
 }
