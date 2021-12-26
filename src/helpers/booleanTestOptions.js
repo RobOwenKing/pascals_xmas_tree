@@ -18,7 +18,7 @@ export const rowTestOptions = [
   }
 ];
 
-export const highlightOptions = [
+export const highlightTestOptions = [
   {
     value: 'none',
     label: 'None',

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Row from './components/Row.jsx';
 
-import { rowTestOptions, highlightOptions } from './helpers/booleanTestOptions.js';
+import { rowTestOptions, highlightTestOptions } from './helpers/booleanTestOptions.js';
 
 import useInput from './hooks/useInput.js';
 
@@ -11,10 +11,11 @@ const App = () => {
   const [tree, setTree] = useState([]);
   const numberOfRows = useInput('number', 10);
 
-  const rowTest = useInput('', rowTestOptions[0].value);
+  const rowOption = useInput('', rowTestOptions[0].value);
+  const [rowTest, setRowTest] = useState(rowTestOptions[0]);
 
-  const highlightOption = useInput('', highlightOptions[0].value);
-  const highlightTest = useState(highlightOptions[0].test);
+  const highlightOption = useInput('', highlightTestOptions[0].value);
+  const [highlightTest, setHighlightTest] = useState(highlightTestOptions[0]);
 
   const calculateNewRow = (previousRow) => {
     return previousRow.slice(0, previousRow.length - 1)
@@ -23,14 +24,13 @@ const App = () => {
 
   const generateTree = () => {
     const returnable = [];
-    const test = rowTestOptions.find((element) => element.value === rowTest.value).test;
 
     let newRow = [1];
 
     for (let i = 0; i < numberOfRows.value; i++) {
       returnable.push(newRow);
 
-      if (test.call(this, i)) {
+      if (rowTest.test.call(this, i)) {
         newRow = calculateNewRow(newRow);
       } else {
         const start = newRow[0];
@@ -43,8 +43,13 @@ const App = () => {
   };
 
   useEffect(() => {
+    setRowTest(rowTestOptions.find((element) => element.value === rowOption.value));
+  }, [rowOption.value]);
+
+  useEffect(() => {
+
     setTree(generateTree());
-  }, [numberOfRows.value, rowTest.value]);
+  }, [numberOfRows.value, rowTest]);
 
   const rows = tree.map((row, index) =>
     <Row values={row} key={index} />
@@ -63,7 +68,7 @@ const App = () => {
           </div>
           <div>
             <label htmlFor="row-test">Prune rows after...</label>
-            <select id="row-test" {...rowTest}>
+            <select id="row-test" {...rowOption}>
               { rowTestOptions.map((opt, index) => {
                 return <option key={index} value={opt.value}>{opt.label}</option>
               }) }
