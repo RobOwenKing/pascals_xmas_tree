@@ -53,15 +53,18 @@ const App = () => {
       </header>
       <article>
         <form>
-          <label htmlFor="rows">Number of Rows:</label>
-          <input id="rows" {...numberOfRows} min="1" />
-
-          <label htmlFor="row-test">Prune rows when:</label>
-          <select id="row-test" {...rowTest}>
-            { rowTestOptions.map((opt, index) => {
-              return <option key={index} value={opt.value}>{opt.label}</option>
-            }) }
-          </select>
+          <div>
+            <label htmlFor="rows">Number of Rows:</label>
+            <input id="rows" {...numberOfRows} min="1" />
+          </div>
+          <div>
+            <label htmlFor="row-test">Prune rows after...</label>
+            <select id="row-test" {...rowTest}>
+              { rowTestOptions.map((opt, index) => {
+                return <option key={index} value={opt.value}>{opt.label}</option>
+              }) }
+            </select>
+          </div>
         </form>
         { rows }
       </article>
