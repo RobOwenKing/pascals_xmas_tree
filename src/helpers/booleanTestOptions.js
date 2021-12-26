@@ -1,10 +1,10 @@
-const sumOfPrimes = [2, 5, 10, 17, 28, 41, 58];
+const sumOfPrimes = [1, 4, 9, 16, 27, 40, 57];
 
 export const rowTestOptions = [
   {
     value: 'multiples',
     label: 'Multiples of...',
-    test: function(i) { return i % 2 === 0; }
+    test: function(i) { return (i+1) % 3 === 0; }
   },
   {
     value: 'primes',

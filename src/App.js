@@ -19,13 +19,20 @@ const App = () => {
 
   const generateTree = () => {
     const returnable = [];
+    const test = rowTestOptions.find((element) => element.value === rowTest.value).test;
 
     let newRow = [1];
 
     for (let i = 0; i < numberOfRows.value; i++) {
       returnable.push(newRow);
 
-      newRow = [1, ...calculateNewRow(newRow), 1];
+      if (test.call(this, i)) {
+        newRow = calculateNewRow(newRow);
+      } else {
+        const start = newRow[0];
+        const end = newRow[newRow.length - 1];
+        newRow = [start, ...calculateNewRow(newRow), end];
+      }
     }
 
     return returnable;
@@ -33,7 +40,7 @@ const App = () => {
 
   useEffect(() => {
     setTree(generateTree());
-  }, [numberOfRows.value]);
+  }, [numberOfRows.value, rowTest.value]);
 
   const rows = tree.map((row, index) =>
     <Row values={row} key={index} />
