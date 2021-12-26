@@ -70,9 +70,17 @@ const App = () => {
             <input id="rows" {...numberOfRows} min="1" />
           </div>
           <div>
-            <label htmlFor="row-test">Prune rows after...</label>
-            <select id="row-test" {...rowOption}>
+            <label htmlFor="row-option">Prune rows after...</label>
+            <select id="row-option" {...rowOption}>
               { rowTestOptions.map((opt, index) => {
+                return <option key={index} value={opt.value}>{opt.label}</option>
+              }) }
+            </select>
+          </div>
+          <div>
+            <label htmlFor="highlight-option">Highlight...</label>
+            <select id="highlight-option" {...highlightOption}>
+              { highlightTestOptions.map((opt, index) => {
                 return <option key={index} value={opt.value}>{opt.label}</option>
               }) }
             </select>
