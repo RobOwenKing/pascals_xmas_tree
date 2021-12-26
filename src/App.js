@@ -14,6 +14,7 @@ const App = () => {
 
   const rowOption = useInput('', rowTestOptions[0].value);
   const [rowTest, setRowTest] = useState(rowTestOptions[0]);
+  const rowMultipleFactor = useInput('number', 3);
 
   const highlightOption = useInput('', highlightTestOptions[0].value);
   const [highlightTest, setHighlightTest] = useState(highlightTestOptions[0]);
@@ -33,7 +34,7 @@ const App = () => {
     for (let i = 0; i < numberOfRows.value; i++) {
       returnable.push(newRow);
 
-      if (rowTest.test.call(this, i)) {
+      if (rowTest.test.call(this, i, rowMultipleFactor.value)) {
         newRow = calculateNewRow(newRow);
       } else {
         const start = newRow[0];
@@ -55,7 +56,7 @@ const App = () => {
 
   useEffect(() => {
     setTree(generateTree());
-  }, [numberOfRows.value, rowTest]);
+  }, [numberOfRows.value, rowTest, rowMultipleFactor.value]);
 
   useEffect(() => {
     setTreeStyle({ fontSize: fontSizeInPixels.value + 'px' });
@@ -87,6 +88,8 @@ const App = () => {
                 return <option key={index} value={opt.value}>{opt.label}</option>
               }) }
             </select>
+            { rowTest.value === 'multiples' &&
+              <input {...rowMultipleFactor} min="2" /> }
           </div>
           <div>
             <label htmlFor="highlight-option">Highlight...</label>

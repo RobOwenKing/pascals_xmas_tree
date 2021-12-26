@@ -11,7 +11,7 @@ export const rowTestOptions = [
   {
     value: 'multiples',
     label: 'Multiples of...',
-    test: function(i) { return (i+1) % 3 === 0; }
+    test: function(i, factor) { return (i+1) % factor === 0; }
   },
   {
     value: 'primes',
