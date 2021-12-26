@@ -34,7 +34,7 @@ export const highlightTestOptions = [
   {
     value: 'multiples',
     label: 'Multiples of...',
-    test: function(i) { return i % 3 === 0; }
+    test: function(i, factor) { return i % factor === 0; }
   },
   {
     value: 'primes',

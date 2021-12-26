@@ -18,6 +18,7 @@ const App = () => {
 
   const highlightOption = useInput('', highlightTestOptions[0].value);
   const [highlightTest, setHighlightTest] = useState(highlightTestOptions[0]);
+  const highlightFactor = useInput('number', 2);
 
   const [treeStyle, setTreeStyle] = useState({ fontSize: 16 });
 
@@ -63,7 +64,7 @@ const App = () => {
   }, [fontSizeInPixels.value]);
 
   const rows = tree.map((row, index) =>
-    <Row values={row} key={index} highlightTest={highlightTest} />
+    <Row values={row} key={index} highlightTest={highlightTest} highlightFactor={highlightFactor.value} />
   );
 
   return (
@@ -98,6 +99,8 @@ const App = () => {
                 return <option key={index} value={opt.value}>{opt.label}</option>
               }) }
             </select>
+            { highlightTest.value === 'multiples' &&
+              <input {...highlightFactor} min="2" /> }
           </div>
         </form>
         <div style={treeStyle}>
