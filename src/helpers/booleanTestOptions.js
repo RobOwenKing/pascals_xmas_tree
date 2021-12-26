@@ -28,5 +28,25 @@ export const highlightTestOptions = [
     value: 'multiples',
     label: 'Multiples of...',
     test: function(i) { return i % 3 === 0; }
+  },
+  {
+    value: 'primes',
+    label: 'Prime numbers',
+    test: function(i) { return false; }
+  },
+  {
+    value: 'fibonnaci',
+    label: 'Fibonnaci numbers',
+    test: function(i) { return false; }
+  },
+  {
+    value: 'powers',
+    label: 'Powers of...',
+    test: function(i) { return false; }
+  },
+  {
+    value: 'squares',
+    label: 'Square numbers',
+    test: function(i) { return Math.floor(Math.sqrt(i)) ** 2 === i; }
   }
 ];
