@@ -47,12 +47,15 @@ const App = () => {
   }, [rowOption.value]);
 
   useEffect(() => {
+    setHighlightTest(highlightTestOptions.find((element) => element.value === highlightOption.value));
+  }, [highlightOption.value]);
 
+  useEffect(() => {
     setTree(generateTree());
   }, [numberOfRows.value, rowTest]);
 
   const rows = tree.map((row, index) =>
-    <Row values={row} key={index} />
+    <Row values={row} key={index} highlightTest={highlightTest} />
   );
 
   return (
