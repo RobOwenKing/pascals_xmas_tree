@@ -9,6 +9,7 @@ import useInput from './hooks/useInput.js';
 
 const App = () => {
   const [tree, setTree] = useState([]);
+  const fontSizeInPixels = useInput('number', 16);
   const numberOfRows = useInput('number', 10);
 
   const rowOption = useInput('', rowTestOptions[0].value);
@@ -16,6 +17,8 @@ const App = () => {
 
   const highlightOption = useInput('', highlightTestOptions[0].value);
   const [highlightTest, setHighlightTest] = useState(highlightTestOptions[0]);
+
+  const [treeStyle, setTreeStyle] = useState({ fontSize: 16 });
 
   const calculateNewRow = (previousRow) => {
     return previousRow.slice(0, previousRow.length - 1)
@@ -54,6 +57,10 @@ const App = () => {
     setTree(generateTree());
   }, [numberOfRows.value, rowTest]);
 
+  useEffect(() => {
+    setTreeStyle({ fontSize: fontSizeInPixels.value + 'px' });
+  }, [fontSizeInPixels.value]);
+
   const rows = tree.map((row, index) =>
     <Row values={row} key={index} highlightTest={highlightTest} />
   );
@@ -68,6 +75,10 @@ const App = () => {
           <div>
             <label htmlFor="rows">Number of Rows:</label>
             <input id="rows" {...numberOfRows} min="1" />
+          </div>
+          <div>
+            <label htmlFor="font-size">Font size:</label>
+            <input id="font-size" {...fontSizeInPixels} min="1" max="20" />
           </div>
           <div>
             <label htmlFor="row-option">Prune rows after...</label>
@@ -86,7 +97,9 @@ const App = () => {
             </select>
           </div>
         </form>
-        { rows }
+        <div style={treeStyle}>
+          { rows }
+        </div>
       </article>
     </div>
   );
