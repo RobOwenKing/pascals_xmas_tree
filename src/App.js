@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 
 import Row from './components/Row.jsx';
 
+import useInput from './hooks/useInput.js';
+
 const App = () => {
   const [tree, setTree] = useState([]);
-  const [numberOfRows, setNumberOfRows] = useState(10);
+  const numberOfRows = useInput('number', 10);
 
   const calculateNewRow = (previousRow) => {
     return previousRow.slice(0, previousRow.length - 1)
@@ -17,7 +19,7 @@ const App = () => {
 
     let newRow = [1];
 
-    for (let i = 0; i < numberOfRows; i++) {
+    for (let i = 0; i < numberOfRows.value; i++) {
       returnable.push(newRow);
 
       newRow = [1, ...calculateNewRow(newRow), 1];
@@ -28,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     setTree(generateTree());
-  }, [numberOfRows]);
+  }, [numberOfRows.value]);
 
   const rows = tree.map((row, index) =>
     <Row values={row} key={index} />
@@ -40,6 +42,9 @@ const App = () => {
         <h1>Pascal's Christmas Tree</h1>
       </header>
       <article>
+        <form>
+          <input {...numberOfRows} min="1" />
+        </form>
         { rows }
       </article>
     </div>
