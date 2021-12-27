@@ -17,6 +17,13 @@ h1 {
 
 form {
   margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+fieldset {
+  display: inline;
+  border: 1px white solid;
 }
 
 .entry {

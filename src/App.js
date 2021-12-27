@@ -106,10 +106,6 @@ const App = () => {
             </div>
           </div>
           <div>
-            <div>
-              <label htmlFor="font-size">Font size:</label>
-              <input id="font-size" {...fontSizeInPixels} min="1" max="20" />
-            </div>
             <fieldset>
               <legend>Colour scheme:</legend>
               <label className="colours-xmas">
@@ -125,6 +121,10 @@ const App = () => {
                 <span className="false">Ice</span> and <span className="true">Fire</span>
               </label>
             </fieldset>
+            <div>
+              <label htmlFor="font-size">Font size:</label>
+              <input id="font-size" {...fontSizeInPixels} min="1" max="20" />
+            </div>
           </div>
         </form>
         <div className={colourScheme} style={treeStyle}>
