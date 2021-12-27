@@ -131,6 +131,10 @@ const App = () => {
           { rows }
         </div>
       </article>
+      <footer>
+        <small>"No discovery of mine has made, or is likely to make, directly or indirectly, for good or ill, the least difference to the amenity of the world." - G. H. Hardy</small>
+        <small>A ReactJS app by Rob Owen King. Here's <a href="http://www.robowenking.com/">my website</a>, and I'm also on <a href="https://github.com/RobOwenKing/">GitHub</a> and <a href="https://twitter.com/RobOwenKing">Twitter</a>.</small>
+      </footer>
     </div>
   );
 }

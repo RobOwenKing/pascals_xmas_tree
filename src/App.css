@@ -59,3 +59,15 @@ label {
 input[type=number] {
   width: 36px;
 }
+
+footer {
+  margin-top: 1rem;
+}
+
+footer small {
+  display: block;
+}
+
+footer small a {
+  color: #97E4F7;
+}
