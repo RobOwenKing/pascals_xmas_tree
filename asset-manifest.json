@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pascals_xmas_tree/static/css/main.66d1919d.css",
+    "main.js": "/pascals_xmas_tree/static/js/main.b8e5b94a.js",
+    "static/js/787.10665e38.chunk.js": "/pascals_xmas_tree/static/js/787.10665e38.chunk.js",
+    "index.html": "/pascals_xmas_tree/index.html",
+    "main.66d1919d.css.map": "/pascals_xmas_tree/static/css/main.66d1919d.css.map",
+    "main.b8e5b94a.js.map": "/pascals_xmas_tree/static/js/main.b8e5b94a.js.map",
+    "787.10665e38.chunk.js.map": "/pascals_xmas_tree/static/js/787.10665e38.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66d1919d.css",
+    "static/js/main.b8e5b94a.js"
+  ]
+}
