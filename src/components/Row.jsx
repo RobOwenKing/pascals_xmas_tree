@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 const Row = ({ values, highlightTest, highlightFactor }) => {
   const entries = values.map((value, index) => {
     if (highlightTest.test.call(this, value, highlightFactor)) {
-      return <span className="entry red" key={index}>{value}</span>;
+      return <strong className="entry true" key={index}>{value}</strong>;
     } else {
-      return <span className="entry green" key={index}>{value}</span>
+      return <span className="entry false" key={index}>{value}</span>
     }
   })
 

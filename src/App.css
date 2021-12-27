@@ -1,5 +1,5 @@
 body {
-  background-color: #282c34;
+  background-color: #121317;
   color: white;
 }
 
@@ -29,12 +29,20 @@ form {
   width: 28px;
 }
 
-.entry.red {
-  color: red;
+.colours-xmas .true {
+  color: #FF2424;
 }
 
-.entry.green {
-  color: green;
+.colours-xmas .false {
+  color: #36FA36;
+}
+
+.colours-icefire .true {
+  color: #F05454;
+}
+
+.colours-icefire .false {
+  color: #97E4F7;
 }
 
 label {

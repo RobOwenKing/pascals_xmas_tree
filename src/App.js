@@ -11,6 +11,7 @@ const App = () => {
   const [tree, setTree] = useState([]);
   const fontSizeInPixels = useInput('number', 16);
   const numberOfRows = useInput('number', 10);
+  const [colourScheme, setColourScheme] = useState('colours-xmas');
 
   const rowOption = useInput('', rowTestOptions[0].value);
   const [rowTest, setRowTest] = useState(rowTestOptions[0]);
@@ -63,6 +64,10 @@ const App = () => {
     setTreeStyle({ fontSize: fontSizeInPixels.value + 'px' });
   }, [fontSizeInPixels.value]);
 
+  const onColourSchemeChange = (event) => {
+    setColourScheme(event.target.value);
+  };
+
   const rows = tree.map((row, index) =>
     <Row values={row} key={index} highlightTest={highlightTest} highlightFactor={highlightFactor.value} />
   );
@@ -75,35 +80,54 @@ const App = () => {
       <article>
         <form>
           <div>
-            <label htmlFor="rows">Number of Rows:</label>
-            <input id="rows" {...numberOfRows} min="1" />
+            <div>
+              <label htmlFor="rows">Number of Rows:</label>
+              <input id="rows" {...numberOfRows} min="1" />
+            </div>
+            <div>
+              <label htmlFor="row-option">Prune rows after...</label>
+              <select id="row-option" {...rowOption}>
+                { rowTestOptions.map((opt, index) => {
+                  return <option key={index} value={opt.value}>{opt.label}</option>
+                }) }
+              </select>
+              { rowTest.value === 'multiples' &&
+                <input {...rowMultipleFactor} min="2" /> }
+            </div>
+            <div>
+              <label htmlFor="highlight-option">Highlight...</label>
+              <select id="highlight-option" {...highlightOption}>
+                { highlightTestOptions.map((opt, index) => {
+                  return <option key={index} value={opt.value}>{opt.label}</option>
+                }) }
+              </select>
+              { highlightTest.value === 'multiples' &&
+                <input {...highlightFactor} min="2" /> }
+            </div>
           </div>
           <div>
-            <label htmlFor="font-size">Font size:</label>
-            <input id="font-size" {...fontSizeInPixels} min="1" max="20" />
-          </div>
-          <div>
-            <label htmlFor="row-option">Prune rows after...</label>
-            <select id="row-option" {...rowOption}>
-              { rowTestOptions.map((opt, index) => {
-                return <option key={index} value={opt.value}>{opt.label}</option>
-              }) }
-            </select>
-            { rowTest.value === 'multiples' &&
-              <input {...rowMultipleFactor} min="2" /> }
-          </div>
-          <div>
-            <label htmlFor="highlight-option">Highlight...</label>
-            <select id="highlight-option" {...highlightOption}>
-              { highlightTestOptions.map((opt, index) => {
-                return <option key={index} value={opt.value}>{opt.label}</option>
-              }) }
-            </select>
-            { highlightTest.value === 'multiples' &&
-              <input {...highlightFactor} min="2" /> }
+            <div>
+              <label htmlFor="font-size">Font size:</label>
+              <input id="font-size" {...fontSizeInPixels} min="1" max="20" />
+            </div>
+            <fieldset>
+              <legend>Colour scheme:</legend>
+              <label className="colours-xmas">
+                <input type="radio" name="colours" value="colours-xmas"
+                       checked={colourScheme === 'colours-xmas'}
+                       onChange={onColourSchemeChange} />
+                <span className="false">Christmas</span> <span className="true">Tree</span>
+              </label>
+              <label className="colours-icefire">
+                <input type="radio" name="colours" value="colours-icefire"
+                       checked={colourScheme === 'colours-icefire'}
+                       onChange={onColourSchemeChange} />
+                <span className="false">Ice</span> and <span className="true">Fire</span>
+              </label>
+            </fieldset>
           </div>
         </form>
-        <div style={treeStyle}>
+        <div className={colourScheme} style={treeStyle}>
           { rows }
         </div>
       </article>
